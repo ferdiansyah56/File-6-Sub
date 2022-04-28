@@ -1,5 +1,6 @@
 # (©)Codexbotz
-# Zelda-Projects
+# Recode by @mrismanaziz
+# t.me/SharingUserbot & t.me/Lunatic0de
 
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
@@ -12,7 +13,7 @@ async def cb_handler(client: Bot, query: CallbackQuery):
     data = query.data
     if data == "about":
         await query.message.edit_text(
-            text=f"Tentang Bot ini:\n\n@{client.username} adalah Bot Telegram untuk menyimpan Postingan atau File yang dapat Diakses melalui Link Khusus.\n\n • Creator: @{OWNER}\n • Owner Repo: @UnrealZlda\n\n👨‍💻 Develoved by @ZeldaProjecst\n",
+            text=f"<b>Tentang Bot ini :<b>\n\n• <code>Owner     :</code> @{OWNER}\n• <code>Channel   :</code> @{CHANNEL}\n• <code>Group     :</code> @{GROUP}\n• <code>Source    :</code> <a href='https://github.com/nmiabdfhmy/Zelda-File-Multi'>Klik Disini</a>\n",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("ᴛᴜᴛᴜᴘ", callback_data="close")]]

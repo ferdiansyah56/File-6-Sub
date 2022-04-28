@@ -1,5 +1,6 @@
 # (©)Codexbotz
-# Zelda-Projects
+# Recode by @mrismanaziz
+# t.me/SharingUserbot & t.me/Lunatic0de
 
 import asyncio
 from datetime import datetime
@@ -75,11 +76,11 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except BaseException:
                 return
-        temp_msg = await message.reply("`Tunggu Sebentar...`")
+        temp_msg = await message.reply("<code>Tunggu Sebentar...</code>")
         try:
             messages = await get_messages(client, ids)
         except BaseException:
-            await message.reply_text("Telah Terjadi Error 🥺")
+            await message.reply_text("<b>Telah Terjadi Error </b>🥺")
             return
         await temp_msg.delete()
 
@@ -98,6 +99,7 @@ async def start_command(client: Client, message: Message):
                 await msg.copy(
                     chat_id=message.from_user.id,
                     caption=caption,
+                    parse_mode="html",
                     reply_markup=reply_markup,
                 )
                 await asyncio.sleep(0.5)
@@ -106,6 +108,7 @@ async def start_command(client: Client, message: Message):
                 await msg.copy(
                     chat_id=message.from_user.id,
                     caption=caption,
+                    parse_mode="html",
                     reply_markup=reply_markup,
                 )
             except BaseException:
@@ -115,15 +118,7 @@ async def start_command(client: Client, message: Message):
             [InlineKeyboardButton("ᴛᴇɴᴛᴀɴɢ sᴀʏᴀ", callback_data="about")],
             [
                 InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink),
-                InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink3),
-            ],
-            [
-                InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink4),
-                InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink5),
-            ],
-            [
-                InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink6),
-                InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink2),
+                InlineKeyboardButton("ɢʀᴏᴜᴘ", url=client.invitelink2),
             ],
             [
                 InlineKeyboardButton("ᴛᴜᴛᴜᴘ", callback_data="close"),
@@ -141,6 +136,7 @@ async def start_command(client: Client, message: Message):
             ),
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True,
+            quote=True,
         )
 
     return
@@ -151,18 +147,7 @@ async def not_joined(client: Client, message: Message):
     buttons = [
         [
             InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink),
-            InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink3),
-        ],
-        [
-            InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink4),
-            InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink5),
-        ],
-        [
-            InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink6),
-            InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=client.invitelink2),
-        ],
-        [
-            InlineKeyboardButton("ᴛᴜᴛᴜᴘ", callback_data="close"),
+            InlineKeyboardButton("ɢʀᴏᴜᴘ", url=client.invitelink2),
         ],
     ]
     try:
@@ -188,26 +173,27 @@ async def not_joined(client: Client, message: Message):
             id=message.from_user.id,
         ),
         reply_markup=InlineKeyboardMarkup(buttons),
+        quote=True,
         disable_web_page_preview=True,
     )
 
 
 @Bot.on_message(filters.command("users") & filters.private & filters.user(1977120689))
 async def get_users(client: Bot, message: Message):
-    msg = await client.send_message(chat_id=message.chat.id, text="`Processing ...`")
+    msg = await client.send_message(chat_id=message.chat.id, text="<code>Processing ...</code>")
     link = await client.export_chat_invite_link(CHANNEL_ID)
     users = await full_userbase()
-    await msg.edit(f"{len(users)} Pengguna menggunakan bot ini\n\nDatabase Channel : {link}")
+    await msg.edit(f"{len(users)} <b>Pengguna menggunakan bot ini</b>\n\nDatabase Channel : {link}")
     
 
 @Bot.on_message(filters.command("addusers") & filters.private & filters.user(ADMINS))
 async def add_users(client: Bot, message: Message):
     msg = await client.send_message(
-        chat_id=message.chat.id, text="`Processing ...`"
+        chat_id=message.chat.id, text="<code>Processing ...</code>"
     )
     users = await full_userbase()
     await bot.add_chat_members(FORCE_SUB_CHANNEL, [users])
-    await msg.edit(f"{len(users)} Pengguna ditambahkan ke Channel")
+    await msg.edit(f"{len(users)} <b>Pengguna ditambahkan ke Channel</b>")
     
 
 @Bot.on_message(filters.private & filters.command("broadcast") & filters.user(ADMINS))
@@ -222,7 +208,7 @@ async def send_text(client: Bot, message: Message):
         unsuccessful = 0
 
         pls_wait = await message.reply(
-            "`Broadcasting Message Tunggu Sebentar...`"
+            "<code>Broadcasting Message Tunggu Sebentar...</code>"
         )
         for row in query:
             chat_id = int(row[0])
@@ -241,18 +227,18 @@ async def send_text(client: Bot, message: Message):
                 unsuccessful += 1
             total += 1
 
-        status = f"""<u>Berhasil Broadcast</u>
-Jumlah Pengguna: `{total}`
-Berhasil: `{successful}`
-Gagal: `{unsuccessful}`
-Pengguna diblokir: `{blocked}`
-Akun Terhapus: `{deleted}`"""
+        status = f"""<b><u>Berhasil Broadcast</u>
+Jumlah Pengguna: <code>{total}</code>
+Berhasil: <code>{successful}</code>
+Gagal: <code>{unsuccessful}</code>
+Pengguna diblokir: <code>{blocked}</code>
+Akun Terhapus: <code>{deleted}</code></b>"""
 
         return await pls_wait.edit(status)
 
     else:
         msg = await message.reply(
-            "`Gunakan Perintah ini Harus Sambil Reply ke pesan telegram yang ingin di Broadcast.`"
+            "<code>Gunakan Perintah ini Harus Sambil Reply ke pesan telegram yang ingin di Broadcast.</code>"
         )
         await asyncio.sleep(8)
         await msg.delete()
@@ -267,9 +253,9 @@ async def ping_pong(client, m: Message):
     m_reply = await m.reply_text("Pinging...")
     delta_ping = time() - start
     await m_reply.edit_text(
-        "PONG!!🏓 \n"
-        f"• Pinger - `{delta_ping * 1000:.3f}ms`\n"
-        f"• Uptime - `{uptime}`\n"
+        "<b>PONG!!</b>🏓 \n"
+        f"<b>• Pinger -</b> <code>{delta_ping * 1000:.3f}ms</code>\n"
+        f"<b>• Uptime -</b> <code>{uptime}</code>\n"
     )
 
 
@@ -279,8 +265,8 @@ async def get_uptime(client, m: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await m.reply_text(
-        "🤖 Bot Status:\n"
-        f"• Uptime: `{uptime}`\n"
-        f"• Start Time: `{START_TIME_ISO}`"
+        "🤖 <b>Bot Status:</b>\n"
+        f"• <b>Uptime:</b> <code>{uptime}</code>\n"
+        f"• <b>Start Time:</b> <code>{START_TIME_ISO}</code>"
     )
  

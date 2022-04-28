@@ -1,5 +1,6 @@
 # (©)Codexbotz
-# Zelda-Projects
+# Recode by @mrismanaziz
+# t.me/SharingUserbot & t.me/Lunatic0de
 
 import asyncio
 
@@ -20,7 +21,7 @@ from helper_func import encode
     )
 )
 async def channel_post(client: Client, message: Message):
-    reply_text = await message.reply_text("`Tunggu Sebentar...`")
+    reply_text = await message.reply_text("<code>Tunggu Sebentar...</code>", quote=True)
     try:
         post_message = await message.copy(
             chat_id=client.db_channel.id, disable_notification=True
@@ -32,7 +33,7 @@ async def channel_post(client: Client, message: Message):
         )
     except Exception as e:
         print(e)
-        await reply_text.edit_text("Telah Terjadi Error...")
+        await reply_text.edit_text("<b>Telah Terjadi Error...</b>")
         return
     converted_id = post_message.message_id * abs(client.db_channel.id)
     string = f"get-{converted_id}"
@@ -50,7 +51,7 @@ async def channel_post(client: Client, message: Message):
     )
 
     await reply_text.edit(
-        f"Link Sharing File Berhasil Di Buat :\n\n{link}",
+        f"<b>Link Sharing File Berhasil Di Buat :</b>\n\n{link}",
         reply_markup=reply_markup,
         disable_web_page_preview=True,
     )
@@ -60,7 +61,7 @@ async def channel_post(client: Client, message: Message):
 
 
 @Bot.on_message(
-    filters.channel & filters.incoming & filters.chat(CHANNEL_ID)
+    filters.channel & filters.incoming & filters.chat(CHANNEL_ID) & ~filters.edited
 )
 async def new_post(client: Client, message: Message):
 
