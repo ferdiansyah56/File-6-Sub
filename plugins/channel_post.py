@@ -20,7 +20,7 @@ from helper_func import encode
     )
 )
 async def channel_post(client: Client, message: Message):
-    reply_text = await message.reply_text("`Tunggu Sebentar...`", quote=True)
+    reply_text = await message.reply_text("`Tunggu Sebentar...`")
     try:
         post_message = await message.copy(
             chat_id=client.db_channel.id, disable_notification=True

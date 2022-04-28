@@ -98,7 +98,6 @@ async def start_command(client: Client, message: Message):
                 await msg.copy(
                     chat_id=message.from_user.id,
                     caption=caption,
-                    parse_mode="html",
                     reply_markup=reply_markup,
                 )
                 await asyncio.sleep(0.5)
@@ -107,7 +106,6 @@ async def start_command(client: Client, message: Message):
                 await msg.copy(
                     chat_id=message.from_user.id,
                     caption=caption,
-                    parse_mode="html",
                     reply_markup=reply_markup,
                 )
             except BaseException:
@@ -143,7 +141,6 @@ async def start_command(client: Client, message: Message):
             ),
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True,
-            quote=True,
         )
 
     return
@@ -191,7 +188,6 @@ async def not_joined(client: Client, message: Message):
             id=message.from_user.id,
         ),
         reply_markup=InlineKeyboardMarkup(buttons),
-        quote=True,
         disable_web_page_preview=True,
     )
 
