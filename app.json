@@ -6,7 +6,7 @@
     "file",
     "sharing"
   ],
-  "repository": "https://github.com/fhmyngrh/zldafilebot",
+  "repository": "https://github.com/ferdiansyah56/zldafilebot",
   "logo": "https://telegra.ph/file/2df3529c4b93e0516216f.jpg",
   "env": {
     "TG_BOT_TOKEN": {
