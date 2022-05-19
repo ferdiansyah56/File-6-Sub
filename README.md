@@ -17,7 +17,7 @@
 ### Installation
 
 #### Deploy on Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ferdiansyah56/File-6-Sub)</br>
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zldaprojects/FILE-6-SUB)</br>
 
 
 #### Deploy in your VPS
